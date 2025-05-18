@@ -1,3 +1,5 @@
+-- ✅ Index Creation Section
+
 -- Index for faster lookup of users by email
 CREATE INDEX idx_user_email ON User (email);
 
@@ -18,3 +20,24 @@ CREATE INDEX idx_review_property_id ON Review (property_id);
 
 -- Index to enhance query speed for reviews written by specific users
 CREATE INDEX idx_review_user_id ON Review (user_id);
+
+
+-- 🔍 Performance Measurement Section Using EXPLAIN ANALYZE
+
+-- Before Index (Assuming you comment out the CREATE INDEX above when testing before)
+-- EXPLAIN ANALYZE SELECT * FROM Booking WHERE user_id = 1;
+
+-- After Index (After creating idx_booking_user_id)
+EXPLAIN ANALYZE SELECT * FROM Booking WHERE user_id = 1;
+
+-- Before Index (for host_id)
+-- EXPLAIN ANALYZE SELECT * FROM Property WHERE host_id = 2;
+
+-- After Index (After creating idx_property_host_id)
+EXPLAIN ANALYZE SELECT * FROM Property WHERE host_id = 2;
+
+-- Before Index (for property_id in Review)
+-- EXPLAIN ANALYZE SELECT * FROM Review WHERE property_id = 3;
+
+-- After Index (After creating idx_review_property_id)
+EXPLAIN ANALYZE SELECT * FROM Review WHERE property_id = 3;
