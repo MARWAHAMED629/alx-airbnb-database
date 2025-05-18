@@ -20,7 +20,8 @@ JOIN
     properties p ON b.property_id = p.property_id
 LEFT JOIN 
     payments pay ON b.booking_id = pay.booking_id;
-
+WHERE 
+    b.user_id = 1 AND b.total_price > 500;
 
 -- ✅ Optimized Version Using CTE
 -- A Common Table Expression (CTE) is used here to isolate booking data,
@@ -35,6 +36,8 @@ WITH BookingDetails AS (
         b.total_price
     FROM 
         bookings b
+	WHERE
+        b.user_id = 1 AND b.total_price > 500
 )
 SELECT 
     bd.booking_id,
@@ -78,3 +81,5 @@ JOIN
     properties p ON b.property_id = p.property_id
 LEFT JOIN 
     payments pay ON b.booking_id = pay.booking_id;
+WHERE
+    b.user_id = 1 AND b.total_price > 500;
