@@ -11,7 +11,8 @@ FROM
     bookings AS b
 INNER JOIN 
     users AS u ON b.user_id = u.user_id;
-
+ORDER BY 
+    b.start_date DESC;
 
 -- Fetch all properties and their corresponding reviews, if available
 SELECT 
@@ -25,6 +26,8 @@ FROM
     properties AS p
 LEFT JOIN 
     reviews AS r ON p.property_id = r.property_id;
+ORDER BY
+    p.name ASC;
 
 
 -- Simulate a FULL OUTER JOIN to retrieve all users and all bookings,
@@ -59,4 +62,5 @@ RIGHT JOIN
     bookings AS b ON u.user_id = b.user_id
 WHERE
     u.user_id IS NULL;
-
+ORDER BY 
+    user_id, b.start_date;
